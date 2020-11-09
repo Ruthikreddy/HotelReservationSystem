@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelReservation
 {
-    class HotelReservationException : Exception
+    public class HotelReservationException : Exception
     {
         /// Exception types
         public enum ExceptionType
