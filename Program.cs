@@ -17,10 +17,10 @@ namespace HotelReservation
             switch (choice)
             {
                 case 1:
-                    customerService.FindCheapHotel(startDate, endDate);
+                    customerService.FindCheapHotel(startDate, endDate,CustomerType.NORMAL);
                     break;
                 case 2:
-                    customerService.FindBestRatedHotel(startDate, endDate);
+                    customerService.FindBestRatedHotel(startDate, endDate,CustomerType.NORMAL);
                     break;
                 default:
                     throw new HotelReservationException(HotelReservationException.ExceptionType.INVALID_CHOICE, "Invalid choice");
