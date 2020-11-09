@@ -10,7 +10,11 @@ namespace HotelReservation
         //Hotel name
         HotelType type;
         //Weekday rate of hotel
-        private readonly double RATE;
+        private readonly double WEEKDAY_RATE;
+        //Weekend rate of hotel
+        private readonly double WEEKEND_RATE;
+        //Rating of hotel
+        public readonly int RATING;
         /// <summary>
         /// Parameterized constructor of Hotel
         /// </summary>
@@ -22,15 +26,21 @@ namespace HotelReservation
             {
                 if (hotelType.Equals(HotelType.LAKEWOOD))
                 {
-                    this.RATE = 110;
+                    this.WEEKDAY_RATE = 110;
+                    this.WEEKEND_RATE = 90;
+                    this.RATING = 3;
                 }
                 if (hotelType.Equals(HotelType.BRIDGEWOOD))
                 {
-                    this.RATE = 150;
+                    this.WEEKDAY_RATE = 150;
+                    this.WEEKEND_RATE = 50;
+                    this.RATING = 4;
                 }
                 if (hotelType.Equals(HotelType.RIDGEWOOD))
                 {
-                    this.RATE = 220;
+                    this.WEEKDAY_RATE = 220;
+                    this.WEEKEND_RATE = 150;
+                    this.RATING = 5;
                 }
             }
             catch (HotelReservationException)
@@ -54,7 +64,10 @@ namespace HotelReservation
                 DateTime endDate = Convert.ToDateTime(endDateString);
                 for (; startDate <= endDate; startDate = startDate.AddDays(1))
                 {
-                    rate = rate + RATE;
+                    if (startDate.DayOfWeek == DayOfWeek.Saturday || startDate.DayOfWeek == DayOfWeek.Sunday)
+                        rate = rate + WEEKEND_RATE;
+                    else
+                        rate = rate + WEEKDAY_RATE;
                 }
             }
             catch (Exception)
